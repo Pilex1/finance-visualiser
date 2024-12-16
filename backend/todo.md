@@ -1,0 +1,4 @@
+- some descriptions have a location but the suburb name appears to be truncated
+  - in some instances it is unambiguous what is meant e.g. "Q KHAN & M.T RANA WISEMANS FERR NS AUS"
+  - but in other instances it is not e.g. "THE STOKES COLLECTION LIM MOUNT M VIC AU"
+    - this particular one I know from context is Mount Macedon, however there should be a way to ask for human input to choose a location from a list of possibilities

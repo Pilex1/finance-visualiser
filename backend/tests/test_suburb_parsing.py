@@ -1,12 +1,13 @@
 import unittest
-from database import Database
+from src.database import Database
+
 
 class TestSuburbParsing(unittest.TestCase):
 
     def test_ultimo(self):
-        self.assertTupleEqual(Database.get_suburb_info("TASTE LEGEND AUS ULTIMO NSW AU"), 
+        self.assertTupleEqual(Database.get_suburb_info("TASTE LEGEND AUS ULTIMO NSW AU"),
                               ("TASTE LEGEND AUS", "ULTIMO NSW AU"))
-       
+
     def test_cronullansw(self):
         self.assertTupleEqual(Database.get_suburb_info("LLOYDS IGA CRONULLANSW NS AUS"),
                               ("LLOYDS IGA", "CRONULLANSW NS AUS"))
@@ -26,7 +27,7 @@ class TestSuburbParsing(unittest.TestCase):
     def test_sydney_south(self):
         self.assertTupleEqual(Database.get_suburb_info("AMAZON AU SYDNEY SOUTH NS AUS"),
                               ("AMAZON AU SYDNEY SOUTH NS AUS", None))
-        
+
     def test_wenworth_f(self):
         self.assertTupleEqual(Database.get_suburb_info("CONDITOREI PATISSERIE WENTWORTH F NSW AU"),
                               ("CONDITOREI PATISSERIE", "WENTWORTH F NSW AU"))

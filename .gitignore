@@ -1,0 +1,20 @@
+# React frontend
+node_modules/
+build/
+dist/
+.env
+*.log
+
+# Python backend
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+.venv/
+ENV/
+venv.bak/
+*.env
+*.log
+.DS_Store

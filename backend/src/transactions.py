@@ -2,17 +2,23 @@ import datetime
 
 from src.database import DB
 import src.math as math
+from typing import TypedDict
+
+
+class Transaction(TypedDict):
+    date: datetime.date
+    amount: float
 
 
 def get_transactions_raw(category: str | None = None,
                          start_date: datetime.date | None = None,
-                         end_date: datetime.date | None = None) -> list[dict]:
+                         end_date: datetime.date | None = None) -> list[Transaction]:
 
     transactions = DB.get_transactions_for_category(
         category, start_date, end_date)
-    transactions = [dict(row) for row in transactions.mappings()]
+    transactions = [Transaction(**row) for row in transactions.mappings()]
 
-    result = []
+    result: list[Transaction] = []
 
     # starting at the earliest date in the transactions, and incrementing by one day until today
     start: datetime.date = start_date if start_date is not None else transactions[0]["date"]
@@ -34,7 +40,7 @@ def get_transactions_raw(category: str | None = None,
     return result
 
 
-def get_transactions_averaged(transactions: list[dict], avg_days: int) -> list[dict]:
+def get_transactions_averaged(transactions: list[Transaction], avg_days: int) -> list[Transaction]:
 
     dates = [t["date"] for t in transactions]
     amounts = [float(t["amount"]) for t in transactions]
@@ -48,7 +54,7 @@ def get_transactions_averaged(transactions: list[dict], avg_days: int) -> list[d
     return [{"date": dates[i], "amount": averaged_amounts[i]} for i in range(len(dates))]
 
 
-def get_transactions_smoothed(transactions: list[dict], avg_days: int) -> list[dict]:
+def get_transactions_smoothed(transactions: list[Transaction], avg_days: int) -> list[Transaction]:
     dates = [t["date"] for t in transactions]
     amounts = [float(t["amount"]) for t in transactions]
 

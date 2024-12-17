@@ -5,12 +5,13 @@ import sqlalchemy.dialects.postgresql as psql
 import pandas as pd
 import numpy as np
 import re
-from constants import Constants, DescRules
+from .constants import Constants, DescRules
+from src import cfg
 
 
 class Database:
-    def __init__(self):
-        self.DATABASE_URL = "postgresql+psycopg2://pilex:pilex@localhost:5432/finance"
+    def __init__(self, url: str):
+        self.DATABASE_URL = url
         self.engine = sql.create_engine(self.DATABASE_URL)
 
         self.metadata = sql.MetaData()
@@ -249,7 +250,7 @@ class Database:
 
 
 if __name__ == "__main__":
-    db = Database()
+    db = Database(cfg.settings.pg_connection_uri)
 
     new_db = False
     if new_db:
@@ -269,4 +270,5 @@ if __name__ == "__main__":
     print(result.keys())
     print(result.fetchmany(5))
 
-DB = Database()
+
+DB = Database(cfg.settings.pg_connection_uri)

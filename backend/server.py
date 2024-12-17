@@ -1,7 +1,7 @@
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.src.transactions import get_transactions_averaged, get_transactions_raw, get_transactions_smoothed
+from src.transactions import get_transactions_averaged, get_transactions_raw, get_transactions_smoothed
 from src.database import DB
 import datetime
 
